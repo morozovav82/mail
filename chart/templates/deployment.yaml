@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mail-chart.fullname" . }}
+  labels:
+    {{- include "mail-chart.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "mail-chart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "mail-chart.selectorLabels" . | nindent 8 }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image }}"
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+#            - name: logging_level_root
+#              value: debug
+            - name: app_basePath
+              valueFrom:
+                configMapKeyRef:
+                  name: mail-config
+                  key: BASE_APP_URL
+            - name: ORDER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: mail-config
+                  key: ORDER_URL
+            - name: USERS_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: mail-config
+                  key: USERS_URL
+            - name: DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: mail-config
+                  key: DATABASE_URL
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mail-secret
+                  key: DATABASE_USER
+            - name: DB_PSW
+              valueFrom:
+                secretKeyRef:
+                  name: mail-secret
+                  key: DATABASE_PSW
+            - name: MQ_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: bill-config
+                  key: MQ_URL
+            - name: MQ_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: bill-config
+                  key: MQ_PORT
+            - name: MQ_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: bill-config
+                  key: MQ_USER
+            - name: MQ_PSW
+              valueFrom:
+                secretKeyRef:
+                  name: bill-secret
+                  key: MQ_PSW

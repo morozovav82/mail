@@ -1,0 +1,20 @@
+{{- if .Values.metrics.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "mail-chart.fullname" . }}
+  labels:
+    {{- include "mail-chart.labels" . | nindent 4 }}
+spec:
+  jobLabel: {{ include "mail-chart.fullname" . }}
+  namespaceSelector:
+    matchNames:
+    - "{{ $.Release.Namespace }}"
+  selector:
+    matchLabels:
+      {{- include "mail-chart.selectorLabels" . | nindent 6 }}
+  endpoints:
+  - interval: 5s
+    port: web
+    path: /actuator/prometheus
+{{- end }}      
