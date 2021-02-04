@@ -16,10 +16,10 @@ order.url: ${ORDER_URL}
 users.url: ${USERS_URL}
 
 active-mq:
-  payment-success-topic: PaymentSuccess
-  payment-reject-topic: PaymentReject
+  OrderReady-topic: OrderReady
+  OrderCanceled-topic: OrderCanceled
 
-#настройка actuator
+#РЅР°СЃС‚СЂРѕР№РєР° actuator
 management:
   endpoints:
     web:
@@ -30,7 +30,7 @@ management:
       show-details: always
 
 ---
-#настройка для prometheus
+#РЅР°СЃС‚СЂРѕР№РєР° РґР»СЏ prometheus
 management:
   metrics:
     distribution:
