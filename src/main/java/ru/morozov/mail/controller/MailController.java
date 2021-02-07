@@ -8,7 +8,7 @@ import ru.morozov.mail.repo.MailRepository;
 
 import java.util.List;
 
-@RestController()
+@RestController
 @RequiredArgsConstructor
 public class MailController {
 
