@@ -48,7 +48,7 @@ spec:
           - "-c"
           - |
             psql $DATABASE_URI <<'EOF'
-              drop table if exists mails;
+              --drop table if exists mails;
               create table mails (id serial not null, title varchar(100), email varchar(100), body varchar(100));
             EOF
 

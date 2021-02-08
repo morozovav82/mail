@@ -18,7 +18,7 @@ public class OrderService {
     public OrderDto getOrder(Long orderId) {
         RestTemplate restTemplate = new RestTemplate();
         try {
-            String url = orderUrl + "/order/" + orderId;
+            String url = orderUrl + "/" + orderId;
             log.debug("Sent request to " + url);
             ResponseEntity<OrderDto> result = restTemplate.getForEntity(url, OrderDto.class);
             log.info("Order found. Result: {}", result.getBody());

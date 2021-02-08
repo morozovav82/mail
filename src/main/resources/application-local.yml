@@ -17,5 +17,5 @@ spring:
       mode: native
 
 app.basePath: /mail
-order.url: http://localhost:8083
-users.url: http://localhost:8081
+order.url: http://localhost:8083/order
+users.url: http://localhost:8081/users

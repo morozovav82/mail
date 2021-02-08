@@ -18,7 +18,7 @@ public class UserService {
     public UserDto getUser(Long userId) {
         RestTemplate restTemplate = new RestTemplate();
         try {
-            String url = usersUrl + "/user/" + userId;
+            String url = usersUrl + "/" + userId;
             log.debug("Sent request to " + url);
             ResponseEntity<UserDto> result = restTemplate.getForEntity(url, UserDto.class);
             log.info("User found. Result: {}", result.getBody());
