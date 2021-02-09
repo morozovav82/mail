@@ -9,7 +9,7 @@ data:
   USERS_URL: {{ .Values.usersUrl }}
   MQ_URL: {{ .Values.mq.url }}
   MQ_PORT: {{ .Values.mq.port | quote }}
-  MQ_USER: {{ .Values.mq.user }}
+  MQ_USER: {{ .Values.mq.username }}
 ---
 apiVersion: v1
 kind: Secret

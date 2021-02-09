@@ -1,15 +1,14 @@
 spring:
-  datasource:
-    driver-class-name: 'org.postgresql.Driver'
-    url: ${DB_URL}
-    username: ${DB_USER}
-    password: ${DB_PSW}
-  artemis:
-    host: ${MQ_URL}
-    port: ${MQ_PORT}
-    user: ${MQ_USER}
-    password: ${MQ_PSW}
-    mode: native
+    datasource:
+      driver-class-name: 'org.postgresql.Driver'
+      url: ${DB_URL}
+      username: ${DB_USER}
+      password: ${DB_PSW}
+    rabbitmq:
+      host: ${MQ_URL}
+      port: ${MQ_PORT}
+      username: ${MQ_USER}
+      password: ${MQ_PSW}
 
 app.basePath:
 order.url: ${ORDER_URL}
