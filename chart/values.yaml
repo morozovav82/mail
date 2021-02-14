@@ -11,7 +11,7 @@ orderUrl: 'http://order-order-chart.morozovav.svc.cluster.local:9000'
 usersUrl: 'http://users-users-chart.morozovav.svc.cluster.local:9000'
   
 postgresql:
-  fullname: users-postgresql
+  fullname: postgresql.morozovav.svc.cluster.local
   postgresqlDatabase: users
   postgresqlUsername: users
   postgresqlPassword: qwerty123
