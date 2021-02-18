@@ -20,7 +20,7 @@ public class OrderReadyConsumer {
     public void receive(OrderReadyMsg msg) {
         log.info("Received Message: {}", msg.toString());
         try {
-            mailService.sendOrderReadyMail(msg.getOrderId());
+            mailService.sendOrderReadyMail(msg.getOrderId(), msg.getUserId());
         } catch (Exception e) {
             log.error("Failed to save mail", e);
         }

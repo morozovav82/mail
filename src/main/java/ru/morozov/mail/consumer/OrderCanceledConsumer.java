@@ -20,7 +20,7 @@ public class OrderCanceledConsumer {
     public void receive(OrderCanceledMsg msg) {
         log.info("Received Message: {}", msg.toString());
         try {
-            mailService.sendOrderCanceled(msg.getOrderId());
+            mailService.sendOrderCanceled(msg.getOrderId(), msg.getUserId());
         } catch (Exception e) {
             log.error("Failed to save mail", e);
         }

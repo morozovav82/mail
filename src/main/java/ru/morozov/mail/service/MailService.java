@@ -18,10 +18,10 @@ public class MailService {
     private final OrderService orderService;
     private final UserService userService;
 
-    public void sendOrderReadyMail(Long orderId) {
+    public void sendOrderReadyMail(Long orderId, Long userId) {
         try {
             //get order
-            OrderDto order = orderService.getOrder(orderId);
+            OrderDto order = orderService.getOrder(orderId, userId);
             Assert.notNull(order, "Order is empty");
             Assert.notNull(order.getUserId(), "UserId is empty");
 
@@ -46,10 +46,10 @@ public class MailService {
         }
     }
 
-    public void sendOrderCanceled(Long orderId) {
+    public void sendOrderCanceled(Long orderId, Long userId) {
         try {
             //get order
-            OrderDto order = orderService.getOrder(orderId);
+            OrderDto order = orderService.getOrder(orderId, userId);
             Assert.notNull(order, "Order is empty");
             Assert.notNull(order.getUserId(), "UserId is empty");
 

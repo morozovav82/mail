@@ -3,14 +3,14 @@ package ru.morozov.mail.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ru.morozov.mail.entity.Mail;
+import ru.morozov.mail.repo.MailRepository;
 import ru.morozov.messages.OrderCanceledMsg;
 import ru.morozov.messages.OrderReadyMsg;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/tests")
@@ -18,14 +18,19 @@ import ru.morozov.messages.OrderReadyMsg;
 @Slf4j
 public class TestController {
 
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private final RabbitTemplate rabbitTemplate;
+    private final MailRepository mailRepository;
 
     @Value("${active-mq.OrderReady-topic}")
     private String orderReadyTopic;
 
     @Value("${active-mq.OrderCanceled-topic}")
     private String orderCanceledTopic;
+
+    @GetMapping("/list")
+    public List<Mail> getAll() {
+        return mailRepository.findAll();
+    }
 
     private void sendMessage(String topic, Object message){
         try{
