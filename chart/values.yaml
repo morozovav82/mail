@@ -1,6 +1,6 @@
 replicaCount: 1
 
-image: morozovav82/mail:1.1
+image: morozovav82/mail:2.0
 
 service:
   type: NodePort
