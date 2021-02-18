@@ -11,7 +11,7 @@ import ru.morozov.messages.OrderReadyMsg;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-@RabbitListener(queues = "${active-mq.OrderReady-topic}")
+@RabbitListener(queues = "${mq.OrderReady-topic}")
 public class OrderReadyConsumer {
 
     private final MailService mailService;

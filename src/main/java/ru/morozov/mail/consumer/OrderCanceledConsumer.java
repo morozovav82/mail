@@ -11,7 +11,7 @@ import ru.morozov.messages.OrderCanceledMsg;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-@RabbitListener(queues = "${active-mq.OrderCanceled-topic}")
+@RabbitListener(queues = "${mq.OrderCanceled-topic}")
 public class OrderCanceledConsumer {
 
     private final MailService mailService;

@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MqConfig {
 
-    @Value("${active-mq.OrderReady-topic}")
+    @Value("${mq.OrderReady-topic}")
     private String orderReadyTopic;
 
-    @Value("${active-mq.OrderCanceled-topic}")
+    @Value("${mq.OrderCanceled-topic}")
     private String orderCanceledTopic;
 
     @Bean

@@ -21,10 +21,10 @@ public class TestController {
     private final RabbitTemplate rabbitTemplate;
     private final MailRepository mailRepository;
 
-    @Value("${active-mq.OrderReady-topic}")
+    @Value("${mq.OrderReady-topic}")
     private String orderReadyTopic;
 
-    @Value("${active-mq.OrderCanceled-topic}")
+    @Value("${mq.OrderCanceled-topic}")
     private String orderCanceledTopic;
 
     @GetMapping("/list")

@@ -14,7 +14,7 @@ app.basePath:
 order.url: ${ORDER_URL}
 users.url: ${USERS_URL}
 
-active-mq:
+mq:
   OrderReady-topic: OrderReady
   OrderCanceled-topic: OrderCanceled
 
