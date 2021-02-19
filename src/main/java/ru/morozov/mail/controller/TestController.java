@@ -6,7 +6,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import ru.morozov.mail.entity.Mail;
-import ru.morozov.mail.repo.MailRepository;
+import ru.morozov.mail.service.MailService;
 import ru.morozov.messages.OrderCanceledMsg;
 import ru.morozov.messages.OrderReadyMsg;
 
@@ -19,7 +19,7 @@ import java.util.List;
 public class TestController {
 
     private final RabbitTemplate rabbitTemplate;
-    private final MailRepository mailRepository;
+    private final MailService mailService;
 
     @Value("${mq.OrderReady-topic}")
     private String orderReadyTopic;
@@ -29,7 +29,7 @@ public class TestController {
 
     @GetMapping("/list")
     public List<Mail> getAll() {
-        return mailRepository.findAll();
+        return mailService.getAll();
     }
 
     private void sendMessage(String topic, Object message){

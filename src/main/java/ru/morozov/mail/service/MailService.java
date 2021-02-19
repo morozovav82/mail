@@ -9,6 +9,8 @@ import ru.morozov.mail.dto.UserDto;
 import ru.morozov.mail.entity.Mail;
 import ru.morozov.mail.repo.MailRepository;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -72,5 +74,9 @@ public class MailService {
         } catch (Exception e) {
             log.error("Failed to send mail", e);
         }
+    }
+
+    public List<Mail> getAll() {
+        return mailRepository.findAll();
     }
 }
